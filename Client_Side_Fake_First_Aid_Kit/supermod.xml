@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<mod name="Client Side Fake First Aid Kit"
+     description=" "
+     contact=" "
+     author="Dr_Newbie"
+     version="1"
+     priority="100">
+	<updates>
+		<update identifier="ClientSideFakeFirstAidKitGitHubUpdate"
+		        display_name="Client Side Fake First Aid Kit"
+		        install_dir="mods/"
+		        meta="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_First_Aid_Kit.json"
+		        download="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_First_Aid_Kit.zip"
+		        patchnotes="https://github.com/DrNewbie/PD2_Client_Side_Fake_Equipment/commits/main/"/>
+	</updates>
+	<hooks>
+		<post hook_id="lib/units/equipment/first_aid_kit/firstaidkitbase"
+		      script_path="firstaidkitbase.lua"/>
+	</hooks>
+</mod>

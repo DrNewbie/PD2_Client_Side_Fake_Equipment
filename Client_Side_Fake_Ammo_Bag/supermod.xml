@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<mod name="Client Side Fake Ammo Bag"
+     description=" "
+     contact=" "
+     author="Dr_Newbie"
+     version="1"
+     priority="100">
+	<updates>
+		<update identifier="ClientSideFakeAmmoBagGitHubUpdate"
+		        display_name="Client Side Fake Ammo Bag"
+		        install_dir="mods/"
+		        meta="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Ammo_Bag.json"
+		        download="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Ammo_Bag.zip"
+		        patchnotes="https://github.com/DrNewbie/PD2_Client_Side_Fake_Equipment/commits/main/"/>
+	</updates>
+	<hooks>
+		<post hook_id="lib/units/equipment/ammo_bag/ammobagbase"
+		      script_path="ammobagbase.lua"/>
+	</hooks>
+</mod>
