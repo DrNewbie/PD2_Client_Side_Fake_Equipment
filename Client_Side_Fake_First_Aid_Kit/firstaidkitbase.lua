@@ -30,20 +30,6 @@ local remove_unit = function(this_unit)
 	end
 end
 
-local check_them_is_okay = function(them)
-	if not them or not them._unit or not alive(them._unit) then
-		return false
-	end
-	return true
-end
-
-local get_them_data = function(them)
-	if not check_them_is_okay(them) then
-		return nil
-	end
-	return ThisFakeFirstAidKitBase.all_key_units[them._unit:key()]
-end
-
 function ThisFakeFirstAidKitBase.spawn(pos, rot, bits, duration)
 	pcall(function()
 		if type(bits) ~= "number" then
@@ -64,8 +50,7 @@ function ThisFakeFirstAidKitBase.spawn(pos, rot, bits, duration)
 		__key_unit:interaction().interact = function(them, ...)
 			if managers.player and managers.player:local_player() then
 				managers.player:local_player():character_damage():band_aid_health()
-				local them_base = get_them_data(them)
-				if them_base and them_base.damage_reduction_upgrade then
+				if them.__damage_reduction_upgrade then
 					managers.player:activate_temporary_upgrade("temporary", "first_aid_damage_reduction")
 				end
 			end
@@ -78,11 +63,12 @@ function ThisFakeFirstAidKitBase.spawn(pos, rot, bits, duration)
 		
 		local upgrade_lvl, auto_recovery = Bitwise:rshift(bits, FirstAidKitBase.auto_recovery_shift), Bitwise:rshift(bits, FirstAidKitBase.upgrade_lvl_shift) % 2^FirstAidKitBase.upgrade_lvl_shift
 		
+		__key_unit:interaction().__damage_reduction_upgrade = upgrade_lvl == 1
+		
 		ThisFakeFirstAidKitBase.all_key_units[__key_unit:key()] = {
 			__key_unit = __key_unit,
 			__this_bag = __this_bag,
-			__time = duration,
-			damage_reduction_upgrade = upgrade_lvl == 1
+			__time = duration
 		}
 		
 		return ThisFakeFirstAidKitBase.all_key_units[__key_unit:key()]
