@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<mod name="Client Side Fake Grenade Crate"
+     description=" "
+     contact=" "
+     author="Dr_Newbie"
+     version="1"
+     priority="100">
+	<updates>
+		<update identifier="ClientSideFakeGrenadeCrateGitHubUpdate"
+		        display_name="Client Side Fake Grenade Crate"
+		        install_dir="mods/"
+		        meta="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Grenade_Crate.json"
+		        download="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Grenade_Crate.zip"
+		        patchnotes="https://github.com/DrNewbie/PD2_Client_Side_Fake_Equipment/commits/main/"/>
+	</updates>
+	<hooks>
+		<post hook_id="lib/units/equipment/grenade_crate/grenadecratebase"
+		      script_path="grenadecratebase.lua"/>
+	</hooks>
+</mod>
