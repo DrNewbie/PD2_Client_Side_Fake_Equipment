@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<mod name="Client Side Fake Doctor Bag"
+     description=" "
+     contact=" "
+     author="Dr_Newbie"
+     version="1"
+     priority="100">
+	<updates>
+		<update identifier="ClientSideFakeDoctorBagGitHubUpdate"
+		        display_name="Client Side Fake Doctor Bag"
+		        install_dir="mods/"
+		        meta="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Doctor_Bag.json"
+		        download="https://drnewbie.github.io/PD2_Client_Side_Fake_Equipment/Client_Side_Fake_Doctor_Bag.zip"
+		        patchnotes="https://github.com/DrNewbie/PD2_Client_Side_Fake_Equipment/commits/main/"/>
+	</updates>
+	<hooks>
+		<post hook_id="lib/units/equipment/doctor_bag/doctorbagbase"
+		      script_path="doctorbagbase.lua"/>
+	</hooks>
+</mod>
