@@ -92,7 +92,15 @@ function ThisFakeAmmoBagBase.spawn(pos, rot, ammo_upgrade_lvl, bullet_storm_leve
 			__time = duration,
 			bullet_storm_level = bullet_storm_level,
 			ammo_amount = tweak_data.upgrades.ammo_bag_base + managers.player:upgrade_value_by_level("ammo_bag", "ammo_increase", ammo_upgrade_lvl)
-		}	
+		}
+		
+		if __this_bag.damage and __this_bag:damage() then
+			local state = "state_6"
+			if __this_bag:damage():has_sequence(state) then
+				__this_bag:damage():run_sequence_simple(state)
+			end
+		end
+		
 		return ThisFakeAmmoBagBase.all_key_units[__key_unit:key()]
 	end)
 end
@@ -120,7 +128,6 @@ function ThisFakeAmmoBagBase._take_ammo(them, unit)
 			local took = round_value(weapon.unit:base():add_ammo_from_bag(them_base.ammo_amount))
 			taken = taken + took
 			them_base.ammo_amount = round_value(them_base.ammo_amount - took)
-			log(them_base.ammo_amount)
 			set_them_data(them, them_base)
 			
 			if them_base.ammo_amount <= 0 then
